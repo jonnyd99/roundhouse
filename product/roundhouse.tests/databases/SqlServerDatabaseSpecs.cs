@@ -9,7 +9,6 @@ namespace roundhouse.tests.databases
 
     public class SqlServerDatabaseSpecs
     {
-        // ReSharper disable once InconsistentNaming
         public abstract class concern_for_SqlServerDatabase : TinySpec<SqlServerDatabase>
         {
             protected static ConfigurationPropertyHolder configuration_property_holder;

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks Condition="'$(TargetFramework)' == ''">netcoreapp3.1;net461</TargetFrameworks>
-    <TargetFramework Condition="'$(TargetFramework)' == ''">net461</TargetFramework>
+    <TargetFrameworks Condition="'$(TargetFramework)' == ''">net8.0</TargetFrameworks>
+    <TargetFramework Condition="'$(TargetFramework)' == ''">net8.0</TargetFramework>
     <CLSCompliant>true</CLSCompliant>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -44,39 +44,9 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
-    <PackageReference Include="System.Security.Principal.Windows" Version="5.0.0" />
-    <PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
-    <PackageReference Include="System.Threading" Version="4.3.0" />
-    <PackageReference Include="System.Net.Sockets" Version="4.3.0" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
-  </ItemGroup>
-    
-  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
-    <PackageReference Include="Costura.Fody" Version="3.3.2" />
-    <PackageReference Include="Fody" Version="3.3.5">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
 
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
-    <ProjectReference Include="..\roundhouse.databases.access\roundhouse.databases.access.csproj" />
-    <ProjectReference Include="..\roundhouse.databases.oracle\roundhouse.databases.oracle.csproj" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\roundhouse.databases.sqlserver\roundhouse.databases.sqlserver.csproj" />
-    <ProjectReference Include="..\roundhouse.databases.sqlite\roundhouse.databases.sqlite.csproj" />
-    <ProjectReference Include="..\roundhouse.databases.postgresql\roundhouse.databases.postgresql.csproj" />
-    <ProjectReference Include="..\roundhouse.databases.sqlserverce\roundhouse.databases.sqlserverce.csproj" />
-    <ProjectReference Include="..\roundhouse.databases.mysql\roundhouse.databases.mysql.csproj" />
-    <ProjectReference Include="..\roundhouse.databases.sqlserver2000\roundhouse.databases.sqlserver2000.csproj" />
     <ProjectReference Include="..\roundhouse.core\roundhouse.core.csproj" />
   </ItemGroup>
   <ItemGroup>
@@ -84,16 +54,15 @@
       <Link>roundhouse.ico</Link>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="../../generated/MySql.Data/keywords.txt" Link="$(AssemblyName).keywords.txt">
-      <LogicalName>$(AssemblyName).keywords.txt</LogicalName>
-    </EmbeddedResource>
-  </ItemGroup>
   
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
     <None Include="rh" CopyToOutputDirectory="PreserveNewest" />
     <None Include="rh.bat" CopyToOutputDirectory="PreserveNewest" />
     <None Include="DotnetToolSettings.xml" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.1" />
   </ItemGroup>
 
     
@@ -103,7 +72,7 @@
     <NuspecProperties>mergedExe=$(CopyDestination);version=$(NugetVersion)</NuspecProperties>
   </PropertyGroup>
     
-  <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0'">
     <NuspecFile>roundhouse.tool.nuspec</NuspecFile>
     <NuspecProperties>version=$(NugetVersion)</NuspecProperties>
   </PropertyGroup>

@@ -7,6 +7,7 @@ using NUnit.Framework;
 using roundhouse.cryptography;
 using System.Threading;
 using System.Threading.Tasks;
+using NUnit.Framework.Legacy;
 
 namespace roundhouse.tests.cryptography
 {
@@ -22,10 +23,10 @@ namespace roundhouse.tests.cryptography
                 string text_to_hash = "I want to see what the freak is going on here";
                 byte[] clear_text_bytes = Encoding.UTF8.GetBytes(text_to_hash);
                 byte[] cypher_bytes = dude.ComputeHash(clear_text_bytes);
-                Assert.AreEqual(16, cypher_bytes.Length);
+                ClassicAssert.AreEqual(16, cypher_bytes.Length);
                 Debug.WriteLine(cypher_bytes);
                 string base_64_cypher = Convert.ToBase64String(cypher_bytes);
-                Assert.AreEqual(24, base_64_cypher.Length);
+                ClassicAssert.AreEqual(24, base_64_cypher.Length);
                 Debug.WriteLine(base_64_cypher);
             }
         }
@@ -46,7 +47,7 @@ namespace roundhouse.tests.cryptography
             {
                 string text_to_hash = "I want to see what the freak is going on here";
                 string expected_hash = "TMGPZJmBhSO5uYbf/TBqNA==";
-                Assert.AreEqual(expected_hash, md5_crypto.hash(text_to_hash));
+                ClassicAssert.AreEqual(expected_hash, md5_crypto.hash(text_to_hash));
             }
         }
 

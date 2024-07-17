@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using roundhouse.consoles;
 using roundhouse.infrastructure.app;
 using roundhouse.infrastructure.app.builders;
