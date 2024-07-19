@@ -21,8 +21,8 @@ namespace roundhouse.tests.infrastructure.filesystem
             var fileSystem = new DotNetFileSystemAccess(config);
 
             var known_folders = KnownFoldersBuilder.build(fileSystem, config);
-            
-            StringAssert.DoesNotContain(":", known_folders.change_drop.folder_full_path);
+
+            Assert.That(known_folders.change_drop.folder_full_path, Does.Not.Contain(":"));
         }
         
     }

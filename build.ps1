@@ -13,7 +13,7 @@ Push-Location $root
 
 "`n"
 " * Generating version number"
-$gitVersion = (gitversion | ConvertFrom-Json)
+$gitVersion = (dotnet-gitversion | ConvertFrom-Json)
 
 If ($onAppVeyor) {
     $newVersion="$($gitVersion.FullSemVer)"
@@ -23,7 +23,7 @@ If ($onAppVeyor) {
 }
 
 " * Restoring nuget packages"
-nuget restore -NonInteractive -Verbosity quiet
+dotnet restore
 
 # Create output and log dirs if they don't exist (don't know why this is necessary - works on my box...)
 If (!(Test-Path $CODEDROP)) {
@@ -38,12 +38,12 @@ If (!(Test-Path $LOGDIR)) {
 
 " * Extracting keywords.txt so that MySql works after ILMerge"
 
-$file = $(Get-ChildItem -Recurse -Include MySql.Data.dll ~/.nuget/packages/mysql.data/ | Select-Object -Last 1)
-& "$root/build/Extract-Resource.ps1" -File $file -ResourceName MySql.Data.keywords.txt -OutFile generated/MySql.Data/keywords.txt
+#$file = $(Get-ChildItem -Recurse -Include MySql.Data.dll ~/.nuget/packages/mysql.data/ | Select-Object -Last 1)
+#& "C:\Users\jonny\source\repos\roundhouse\build\Extract-Resource.ps1" -File $file -ResourceName MySql.Data.keywords.txt -OutFile generated/MySql.Data/keywords.txt
 
 
 " * Building and packaging"
-msbuild /t:"Build" /p:DropFolder=$CODEDROP /p:Version="$($gitVersion.FullSemVer)" /p:NoPackageAnalysis=true /nologo /v:q /fl /flp:"LogFile=$LOGDIR/msbuild.log;Verbosity=n" /p:Configuration=Build /p:Platform="Any CPU"
+dotnet msbuild /t:"Build" /p:DropFolder=$CODEDROP /p:Version="$($gitVersion.FullSemVer)" /p:NoPackageAnalysis=true /nologo /v:q /fl /flp:"LogFile=$LOGDIR/msbuild.log;Verbosity=n" /p:Configuration=Build /p:Platform="Any CPU"
 
 "    - NuGet libraries"
 dotnet pack -nologo --no-build -v q -p:Version="$($gitVersion.FullSemVer)" -p:NoPackageAnalysis=true -p:Configuration=Build -p:Platform="Any CPU" -o ${PACKAGEDIR}
@@ -51,8 +51,8 @@ dotnet pack -nologo --no-build -v q -p:Version="$($gitVersion.FullSemVer)" -p:No
 
 "    - net461 command-line nuget package"
 
-nuget pack product/roundhouse.console/roundhouse.nuspec -OutputDirectory "$CODEDROP/packages" -Verbosity quiet -NoPackageAnalysis -Version "$($gitVersion.FullSemVer)" 
-msbuild /t:"Pack" product/roundhouse.tasks/roundhouse.tasks.csproj  /p:DropFolder=$CODEDROP /p:Version="$($gitVersion.FullSemVer)" /p:NoPackageAnalysis=true /nologo /v:q /fl /flp:"LogFile=$LOGDIR/msbuild.roundhouse.tasks.pack.log;Verbosity=n" /p:Configuration=Build /p:Platform="Any CPU"
+dotnet pack product/roundhouse.console/roundhouse.nuspec -OutputDirectory "$CODEDROP/packages" -Verbosity quiet -NoPackageAnalysis -Version "$($gitVersion.FullSemVer)" 
+dotnet msbuild /t:"Pack" product/roundhouse.tasks/roundhouse.tasks.csproj  /p:DropFolder=$CODEDROP /p:Version="$($gitVersion.FullSemVer)" /p:NoPackageAnalysis=true /nologo /v:q /fl /flp:"LogFile=$LOGDIR/msbuild.roundhouse.tasks.pack.log;Verbosity=n" /p:Configuration=Build /p:Platform="Any CPU"
 
 "    - netcoreapp3.1 global tool dotnet-roundhouse"
 

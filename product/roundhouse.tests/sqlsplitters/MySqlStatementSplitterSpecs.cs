@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using roundhouse.databases.mysql.parser;
 using roundhouse.sqlsplitters;
 
@@ -34,8 +35,8 @@ namespace roundhouse.tests.sqlsplitters
                 WriteStatements(statements);
 
                 WriteOutput("Statements parsed: " + statements.Count);
-                Assert.AreEqual("select * from test1" + Environment.NewLine, statements[0].Value);
-                Assert.AreEqual(2, statements.Count);
+                ClassicAssert.AreEqual("select * from test1" + Environment.NewLine, statements[0].Value);
+                ClassicAssert.AreEqual(2, statements.Count);
             }
 
             [Observation]
@@ -47,8 +48,8 @@ namespace roundhouse.tests.sqlsplitters
                 List<ParsedStatement> statements = parser.Parse();
                 WriteStatements(statements);
 
-                Assert.AreEqual("/*\n *\n * Test Statement\n *\n */\nselect * from test1", statements[0].Value.Trim());
-                Assert.AreEqual(2, statements.Count);
+                ClassicAssert.AreEqual("/*\n *\n * Test Statement\n *\n */\nselect * from test1", statements[0].Value.Trim());
+                ClassicAssert.AreEqual(2, statements.Count);
             }
 
             [Observation]
@@ -61,8 +62,8 @@ namespace roundhouse.tests.sqlsplitters
                 WriteStatements(statements);
 
                 WriteOutput("Statements parsed: " + statements.Count);
-                Assert.AreEqual("select * from test1" + Environment.NewLine, statements[0].Value);
-                Assert.AreEqual(2, statements.Count);
+                ClassicAssert.AreEqual("select * from test1" + Environment.NewLine, statements[0].Value);
+                ClassicAssert.AreEqual(2, statements.Count);
             }
 
             [Observation]
@@ -75,8 +76,8 @@ namespace roundhouse.tests.sqlsplitters
                 WriteStatements(statements);
 
                 WriteOutput("Statements parsed: " + statements.Count);
-                Assert.AreEqual("select * from test1" + Environment.NewLine, statements[0].Value);
-                Assert.AreEqual(2, statements.Count);
+                ClassicAssert.AreEqual("select * from test1" + Environment.NewLine, statements[0].Value);
+                ClassicAssert.AreEqual(2, statements.Count);
             }
 
             [Observation]
@@ -89,8 +90,8 @@ namespace roundhouse.tests.sqlsplitters
                 WriteStatements(statements);
 
                 WriteOutput("Statements parsed: " + statements.Count);
-                Assert.AreEqual("select * from test1" + Environment.NewLine, statements[0].Value);
-                Assert.AreEqual(2, statements.Count);
+                ClassicAssert.AreEqual("select * from test1" + Environment.NewLine, statements[0].Value);
+                ClassicAssert.AreEqual(2, statements.Count);
             }
 
             [Observation]
@@ -103,8 +104,8 @@ namespace roundhouse.tests.sqlsplitters
                 WriteStatements(statements);
 
                 WriteOutput("Statements parsed: " + statements.Count);
-                Assert.AreEqual("select * from test1" + Environment.NewLine, statements[0].Value);
-                Assert.AreEqual(2, statements.Count);
+                ClassicAssert.AreEqual("select * from test1" + Environment.NewLine, statements[0].Value);
+                ClassicAssert.AreEqual(2, statements.Count);
             }
 
             [Observation]
@@ -117,8 +118,8 @@ namespace roundhouse.tests.sqlsplitters
                 WriteStatements(statements);
 
                 WriteOutput("Statements parsed: " + statements.Count);
-                Assert.AreEqual("select * from test1" + Environment.NewLine, statements[0].Value);
-                Assert.AreEqual(2, statements.Count);
+                ClassicAssert.AreEqual("select * from test1" + Environment.NewLine, statements[0].Value);
+                ClassicAssert.AreEqual(2, statements.Count);
             }
 
             [Observation]
@@ -131,8 +132,8 @@ namespace roundhouse.tests.sqlsplitters
                 WriteStatements(statements);
 
                 WriteOutput("Statements parsed: " + statements.Count);
-                Assert.AreEqual("select * from test1" + Environment.NewLine, statements[0].Value);
-                Assert.AreEqual(3, statements.Count);
+                ClassicAssert.AreEqual("select * from test1" + Environment.NewLine, statements[0].Value);
+                ClassicAssert.AreEqual(3, statements.Count);
             }
 
             [Observation]
@@ -145,8 +146,8 @@ namespace roundhouse.tests.sqlsplitters
                 WriteStatements(statements);
 
                 WriteOutput("Statements parsed: " + statements.Count);
-                Assert.AreEqual("set ps = 'select * from test;'" + Environment.NewLine, statements[0].Value);
-                Assert.AreEqual(3, statements.Count);
+                ClassicAssert.AreEqual("set ps = 'select * from test;'" + Environment.NewLine, statements[0].Value);
+                ClassicAssert.AreEqual(3, statements.Count);
             }
 
             private void WriteStatements(List<ParsedStatement> statements) {

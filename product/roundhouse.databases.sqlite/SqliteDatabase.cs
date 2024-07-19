@@ -3,7 +3,7 @@
 namespace roundhouse.databases.sqlite
 {
     using System;
-    using System.Data.SQLite;
+    using Microsoft.Data.Sqlite;
     using System.IO;
     using infrastructure.app;
     using infrastructure.extensions;
@@ -89,7 +89,7 @@ namespace roundhouse.databases.sqlite
             if (string.IsNullOrEmpty(db_file)) return true;
             if (File.Exists(db_file)) return false;
             
-            SQLiteConnection.CreateFile(db_file);
+            var sqlLiteConnection = new SqliteConnection(db_file);
 
             return true;
         }
@@ -134,7 +134,7 @@ namespace roundhouse.databases.sqlite
 
         protected override DbProviderFactory get_db_provider_factory()
         {
-            return SQLiteFactory.Instance;
+            return SqliteFactory.Instance;
         }
     }
 }

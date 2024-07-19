@@ -1,5 +1,5 @@
 using System.Data.Common;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using roundhouse.databases;
 using roundhouse.infrastructure.logging.custom;
 using Should;
@@ -10,10 +10,10 @@ namespace roundhouse.tests.databases
     using roundhouse.databases.sqlserver;
     using roundhouse.databases.sqlserverce;
     using roundhouse.databases.mysql;
-#if NET461
+
     using roundhouse.databases.oracle;
     using roundhouse.databases.access;
-#endif
+
     using roundhouse.databases.postgresql;
     using roundhouse.databases.sqlite;
     using roundhouse.infrastructure.app;
@@ -35,7 +35,6 @@ namespace roundhouse.tests.databases
             public DbProviderFactory factory => get_db_provider_factory();
         }
 
-#if NET461
         public class TestableOracleDatabase : OracleDatabase, ITestableDatabase
         {
             public DbProviderFactory factory => get_db_provider_factory();
@@ -45,8 +44,6 @@ namespace roundhouse.tests.databases
         {
             public DbProviderFactory factory => get_db_provider_factory();
         }
-
-#endif
 
         public class TestablePostgreSQLDatabase : PostgreSQLDatabase, ITestableDatabase
         {
@@ -131,7 +128,6 @@ namespace roundhouse.tests.databases
             }
         }
         
-#if NET461
         [Concern(typeof(TestableOracleDatabase))]
         public class concern_for_OracleDatabase : concern_for_Database<TestableOracleDatabase>
         {
@@ -142,9 +138,7 @@ namespace roundhouse.tests.databases
                 fac.ShouldBeType<System.Data.OracleClient.OracleClientFactory>();
             }
         }
-#endif
 
-#if (NET461 && _WINDOWS)
         [Concern(typeof(TestableAccessDatabase))]
         public class concern_for_AccessDatabase : concern_for_Database<TestableAccessDatabase>
         {
@@ -161,7 +155,6 @@ namespace roundhouse.tests.databases
                 fac.ShouldBeType<System.Data.OleDb.OleDbFactory>();
             }
         }
-#endif
 
         [Concern(typeof(TestablePostgreSQLDatabase))]
         public class concern_for_PostgresqlDatabase : concern_for_Database<TestablePostgreSQLDatabase>
@@ -174,7 +167,6 @@ namespace roundhouse.tests.databases
             }
         }
 
-#if _WINDOWS
         [Concern(typeof(TestableSqliteDatabase))]
         public class concern_for_SqliteDatabase : concern_for_Database<TestableSqliteDatabase>
         {
@@ -185,7 +177,6 @@ namespace roundhouse.tests.databases
                 fac.ShouldBeType<System.Data.SQLite.SQLiteFactory>();
             }
         }
-#endif
 
         [Concern(typeof(TestableSqlServer2000Database))]
         public class concern_for_SqlServer2000Database : concern_for_Database<TestableSqlServer2000Database>
@@ -198,7 +189,6 @@ namespace roundhouse.tests.databases
             }
         }
 
-#if NET461
         [Concern(typeof(TestableSqlServerCEDatabase))]
         public class concern_for_SqlServerCEDatabase : concern_for_Database<TestableSqlServerCEDatabase>
         {
@@ -209,7 +199,5 @@ namespace roundhouse.tests.databases
                 fac.ShouldBeType<System.Data.SqlServerCe.SqlCeProviderFactory>();
             }
         }
-#endif
-
     }
 }

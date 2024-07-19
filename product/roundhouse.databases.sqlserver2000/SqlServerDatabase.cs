@@ -1,5 +1,5 @@
 using System.Data.Common;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using roundhouse.infrastructure.logging;
 
 namespace roundhouse.databases.sqlserver2000
