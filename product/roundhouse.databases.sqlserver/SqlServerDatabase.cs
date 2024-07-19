@@ -5,7 +5,7 @@ namespace roundhouse.databases.sqlserver
 {
     using System;
     using System.Data;
-    using Microsoft.Data.SqlClient;
+    using System.Data.SqlClient;
     using System.Text;
     using System.Text.RegularExpressions;
 

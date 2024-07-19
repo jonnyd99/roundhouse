@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net8.0</TargetFrameworks>
+    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
     <CLSCompliant>true</CLSCompliant>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -55,9 +55,25 @@ This is an "include all" package that gives you all the databases. If you want o
     <PlatformTarget>AnyCPU</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+    <ProjectReference Include="..\roundhouse.databases.oracle\roundhouse.databases.oracle.csproj" />
+    <ProjectReference Include="..\roundhouse.databases.access\roundhouse.databases.access.csproj" />
+  </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\roundhouse.databases.mysql\roundhouse.databases.mysql.csproj" />
+    <ProjectReference Include="..\roundhouse.databases.postgresql\roundhouse.databases.postgresql.csproj" />
+    <ProjectReference Include="..\roundhouse.databases.sqlite\roundhouse.databases.sqlite.csproj" />
+    <ProjectReference Include="..\roundhouse.databases.sqlserver2000\roundhouse.databases.sqlserver2000.csproj" />
+    <ProjectReference Include="..\roundhouse.databases.sqlserverce\roundhouse.databases.sqlserverce.csproj" />
     <ProjectReference Include="..\roundhouse.databases.sqlserver\roundhouse.databases.sqlserver.csproj" />
     <ProjectReference Include="..\roundhouse.core\roundhouse.core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
     
   <ItemGroup>
@@ -66,10 +82,15 @@ This is an "include all" package that gives you all the databases. If you want o
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="../../nuget/RoundhousE_Logo.NuGet.jpg" Pack="true" PackagePath="/images" />
+    <EmbeddedResource Include="../../generated/MySql.Data/keywords.txt" Link="$(AssemblyName).keywords.txt">
+      <LogicalName>$(AssemblyName).keywords.txt</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="ILMerge" Version="3.0.41" />
+    <None Include="../../nuget/RoundhousE_Logo.NuGet.jpg" Pack="true" PackagePath="/images"/>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ILMerge" Version="3.0.29" />
   </ItemGroup>
   
 </Project>
