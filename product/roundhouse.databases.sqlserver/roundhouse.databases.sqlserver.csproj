@@ -17,9 +17,9 @@
   
    
   <PropertyGroup>
-    <NugetVersion Condition="'$(NugetVersion)' == ''">$(Version)</NugetVersion>
+    <NugetVersion>1.0.0</NugetVersion>
     <PackageVersion>$(NugetVersion)</PackageVersion>
-    <PackageId>roundhouse_net80.sqlserver</PackageId>
+    <PackageId>roundhouse-net80.sqlserver</PackageId>
     <Title>RoundhousE Library Net80 - SQLServer</Title>
     <Authors>Rob Reynolds, Erik A. Brandstadmoen</Authors>
     <Description>This is the latest version of roundhouseE that has been converted to .Net 8.0 and Microsoft.Data.SqlClient 5.2.1.
@@ -29,7 +29,7 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>roundhouse sqlserver net80</PackageTags>
     <PackageIcon>images/RoundhousE_Logo.NuGet.jpg</PackageIcon>
-    <Product>$(AssemblyName)_net80</Product>
+    <Product>$(AssemblyName)-net80</Product>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   
@@ -70,9 +70,9 @@
   <PropertyGroup>
     <TargetsForTfmSpecificBuildOutput> $(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
     <RepositoryUrl>https://github.com/jonnyd99/roundhouse</RepositoryUrl>
-    <Version>1.01</Version>
-    <FileVersion>1.2.0</FileVersion>
-    <AssemblyVersion>1.2.0</AssemblyVersion>
+    <Version>1.0.0</Version>
+    <FileVersion></FileVersion>
+    <AssemblyVersion></AssemblyVersion>
     <RepositoryType>github</RepositoryType>
   </PropertyGroup>
 
