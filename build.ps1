@@ -56,8 +56,8 @@ dotnet msbuild /t:"Pack" product/roundhouse.tasks/roundhouse.tasks.csproj  /p:Dr
 
 "    - netcoreapp3.1 global tool dotnet-roundhouse"
 
-dotnet publish -v q -nologo --no-restore product/roundhouse.console -p:NoPackageAnalysis=true -p:TargetFramework=netcoreapp3.1 -p:Version="$($gitVersion.FullSemVer)" -p:Configuration=Build -p:Platform="Any CPU"
-dotnet pack -v q -nologo --no-restore --no-build product/roundhouse.console -p:NoPackageAnalysis=true -p:TargetFramework=netcoreapp3.1 -o ${PACKAGEDIR} -p:Version="$($gitVersion.FullSemVer)" -p:Configuration=Build -p:Platform="Any CPU"
+dotnet publish -v q -nologo --no-restore product/roundhouse.console -p:NoPackageAnalysis=true -p:TargetFramework=net8.0 -p:Version="$($gitVersion.FullSemVer)" -p:Configuration=Build -p:Platform="Any CPU"
+dotnet pack -v q -nologo --no-restore --no-build product/roundhouse.console -p:NoPackageAnalysis=true -p:TargetFramework=net8.0 -o ${PACKAGEDIR} -p:Version="$($gitVersion.FullSemVer)" -p:Configuration=Build -p:Platform="Any CPU"
 
 
 # " * Packaging netcoreapp3.1 global tool dotnet-roundhouse`n"

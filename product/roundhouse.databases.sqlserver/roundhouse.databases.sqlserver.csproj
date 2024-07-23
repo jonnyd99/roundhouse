@@ -8,7 +8,6 @@
     <OutputType>Library</OutputType>
     <RootNamespace>roundhouse.databases.sqlserver</RootNamespace>
     <AssemblyName>roundhouse.databases.sqlserver</AssemblyName>
-    <PackageId>roundhouse.sqlserver</PackageId>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
     <NoWarn>NU1701</NoWarn>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
@@ -20,19 +19,18 @@
   <PropertyGroup>
     <NugetVersion Condition="'$(NugetVersion)' == ''">$(Version)</NugetVersion>
     <PackageVersion>$(NugetVersion)</PackageVersion>
-    <PackageId>roundhouse.sqlserver</PackageId>
-    <Title>RoundhousE Library - SQLServer</Title>
+    <PackageId>roundhouse_net80.sqlserver</PackageId>
+    <Title>RoundhousE Library Net80 - SQLServer</Title>
     <Authors>Rob Reynolds, Erik A. Brandstadmoen</Authors>
-    <Description>
-     RoundhousE is a Professional Database Change and Versioning Management tool. 
-      
-This is the Microsoft SQL Server database package.
+    <Description>This is the latest version of roundhouseE that has been converted to .Net 8.0 and Microsoft.Data.SqlClient 5.2.1.
     </Description>
     <PackageProjectUrl>http://projectroundhouse.org</PackageProjectUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageTags>roundhouse db migration database migrator chucknorris sqlserver</PackageTags>
+    <PackageTags>roundhouse sqlserver net80</PackageTags>
     <PackageIcon>images/RoundhousE_Logo.NuGet.jpg</PackageIcon>
+    <Product>$(AssemblyName)_net80</Product>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   
     
@@ -60,6 +58,10 @@ This is the Microsoft SQL Server database package.
   </ItemGroup>
   <ItemGroup>
     <None Include="../../nuget/RoundhousE_Logo.NuGet.jpg" Pack="true" PackagePath="/images" />
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\roundhouse.core\roundhouse.core.csproj" />
