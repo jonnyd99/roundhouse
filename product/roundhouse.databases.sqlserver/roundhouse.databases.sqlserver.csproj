@@ -17,7 +17,7 @@
   
    
   <PropertyGroup>
-    <NugetVersion>1.0.0</NugetVersion>
+    <NugetVersion>1.0.1</NugetVersion>
     <PackageVersion>$(NugetVersion)</PackageVersion>
     <PackageId>roundhouse-net80.sqlserver</PackageId>
     <Title>RoundhousE Library Net80 - SQLServer</Title>
@@ -64,25 +64,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\roundhouse.core\roundhouse.core.csproj" PrivateAssets="all" />
+    <ProjectReference Include="..\roundhouse.core\roundhouse.core.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
-    <TargetsForTfmSpecificBuildOutput> $(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
     <RepositoryUrl>https://github.com/jonnyd99/roundhouse</RepositoryUrl>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <FileVersion></FileVersion>
     <AssemblyVersion></AssemblyVersion>
     <RepositoryType>github</RepositoryType>
   </PropertyGroup>
-
-  <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
-    <ItemGroup>
-      <_ReferenceCopyLocalPaths Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference')-&gt;WithMetadataValue('PrivateAssets', 'All'))" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <BuildOutputInPackage Include="@(_ReferenceCopyLocalPaths)" TargetPath="%(_ReferenceCopyLocalPaths.DestinationSubDirectory)" />
-    </ItemGroup>
-  </Target>
 </Project>

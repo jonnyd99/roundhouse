@@ -18,20 +18,22 @@
   <PropertyGroup Label="Nuget properties">
     <NugetVersion Condition="'$(NugetVersion)' == ''">$(Version)</NugetVersion>
     <PackageVersion>$(NugetVersion)</PackageVersion>
-    <PackageId>roundhouse.core</PackageId>
+    <PackageId>roundhouse-net80.core</PackageId>
     <Title>RoundhousE Library - core</Title>
     <Authors>Rob Reynolds, Erik A. Brandstadmoen</Authors>
-    <Description>
-     RoundhousE is a Professional Database Change and Versioning Management tool. 
-      
+    <Description>This is the latest version of roundhouseE that has been converted to .Net 8.0 and Microsoft.Data.SqlClient 5.2.1.
 This is the core package, which implements the basic functionality. If you want to create your own RoundhousE database implementation, this is the package you want. If not, you probably want one of the database-specific versions.
     </Description>
     <PackageProjectUrl>http://projectroundhouse.org</PackageProjectUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageTags>roundhouse db migration database migrator chucknorris</PackageTags>
+    <PackageTags>roundhouse core net80</PackageTags>
     <PackageIcon>images/RoundhousE_Logo.NuGet.jpg</PackageIcon>
     <Version>1.0.0</Version>
+    <Product>$(AssemblyName)-net80</Product>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/jonnyd99/roundhouse</RepositoryUrl>
+    <RepositoryType>github</RepositoryType>
   </PropertyGroup>
     
 
@@ -78,6 +80,10 @@ This is the core package, which implements the basic functionality. If you want 
     <EmbeddedResource Include="infrastructure.app\logging\log4net.config.xml" />
     <EmbeddedResource Include="infrastructure.app\logging\log4net.config.no.console.xml" />
     <None Include="../../nuget/RoundhousE_Logo.NuGet.jpg" Pack="true" PackagePath="/images" />
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
   <!-- Copy to drop folder after packaging -->
   <Target Name="CopyToDropFolder" AfterTargets="Pack" Condition="'$(DropFolder)' != ''">
