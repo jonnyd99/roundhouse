@@ -1,3 +1,5 @@
+# This is a conversion of the latest version of RoundhousE. It uses .NET 8.0 and Microsoft.Data.SqlClient 5.2.1. The package is currently experimental.
+
 # NOTE: RoundhousE is "abandoned"
 
 RoundhousE is a wonderful tool, and I was one of the main maintainers for a couple of years, as

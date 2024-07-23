@@ -69,7 +69,11 @@
 
   <PropertyGroup>
     <TargetsForTfmSpecificBuildOutput> $(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
-    <RepositoryUrl></RepositoryUrl>
+    <RepositoryUrl>https://github.com/jonnyd99/roundhouse</RepositoryUrl>
+    <Version>1.01</Version>
+    <FileVersion>1.2.0</FileVersion>
+    <AssemblyVersion>1.2.0</AssemblyVersion>
+    <RepositoryType>github</RepositoryType>
   </PropertyGroup>
 
   <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
